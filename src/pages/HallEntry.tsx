@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
 import Home from './Home'
+import Gate from './Gate'
 import { loadPlayer } from '../lib/player'
 import { getProgress } from '../lib/progress'
 
@@ -25,7 +25,7 @@ export default function HallEntry() {
   }, [player])
 
   if (!player) {
-    return <Navigate to="/" replace />
+    return <Gate />
   }
   return <Home />
 }

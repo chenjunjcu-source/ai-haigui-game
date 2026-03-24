@@ -1,16 +1,21 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import Gate from './Gate'
 
 export default function Welcome() {
-  const navigate = useNavigate()
   const [leaving, setLeaving] = React.useState(false)
+  const [showGate, setShowGate] = React.useState(false)
 
   function start() {
     if (leaving) return
     setLeaving(true)
     window.setTimeout(() => {
-      navigate('/gate')
+      setLeaving(false)
+      setShowGate(true)
     }, 550)
+  }
+
+  if (showGate) {
+    return <Gate />
   }
 
   return (

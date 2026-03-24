@@ -5,7 +5,6 @@ import Game from './pages/Game'
 import Result from './pages/Result'
 import Room from './pages/Room'
 import Welcome from './pages/Welcome'
-import Gate from './pages/Gate'
 import HallEntry from './pages/HallEntry'
 
 export default function App() {
@@ -14,7 +13,7 @@ export default function App() {
       <div className="min-h-screen text-slate-100">
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/gate" element={<Gate />} />
+          <Route path="/gate" element={<Navigate to="/" replace />} />
           <Route path="/hall" element={<HallEntry />} />
           <Route path="/game/:id" element={<Game />} />
           <Route path="/result" element={<Result />} />
