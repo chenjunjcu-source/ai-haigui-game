@@ -1,0 +1,28 @@
+import React from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Game from './pages/Game'
+import Result from './pages/Result'
+import Room from './pages/Room'
+import Welcome from './pages/Welcome'
+import Gate from './pages/Gate'
+import HallEntry from './pages/HallEntry'
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen text-slate-100">
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/gate" element={<Gate />} />
+          <Route path="/hall" element={<HallEntry />} />
+          <Route path="/game/:id" element={<Game />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/room/:roomId" element={<Room />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
+}
+

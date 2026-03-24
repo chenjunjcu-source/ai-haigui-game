@@ -1,0 +1,37 @@
+{
+  "test1": {
+    "playerId": "test1",
+    "name": "Test侦探",
+    "clearedCount": 1,
+    "maxClearedId": 1,
+    "updatedAt": "2026-03-20T08:13:52.597Z"
+  },
+  "debug1": {
+    "playerId": "debug1",
+    "name": "卡卡",
+    "clearedCount": 1,
+    "maxClearedId": 1,
+    "updatedAt": "2026-03-20T08:22:00.313Z"
+  },
+  "5ecee857-1d74-4d2f-bdad-f2ad9625c697": {
+    "playerId": "5ecee857-1d74-4d2f-bdad-f2ad9625c697",
+    "name": "卡卡",
+    "clearedCount": 0,
+    "maxClearedId": 0,
+    "updatedAt": "2026-03-20T08:56:58.387Z"
+  },
+  "b84fff9e-845e-4857-b5bc-22d28650dae2": {
+    "playerId": "b84fff9e-845e-4857-b5bc-22d28650dae2",
+    "name": "卡卡",
+    "clearedCount": 0,
+    "maxClearedId": 0,
+    "updatedAt": "2026-03-20T10:43:21.828Z"
+  },
+  "726e4535-92e3-42a6-99d8-89e8d370c923": {
+    "playerId": "726e4535-92e3-42a6-99d8-89e8d370c923",
+    "name": "卡卡",
+    "clearedCount": 0,
+    "maxClearedId": 0,
+    "updatedAt": "2026-03-23T12:52:01.449Z"
+  }
+}
