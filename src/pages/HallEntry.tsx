@@ -25,7 +25,7 @@ export default function HallEntry() {
   }, [player])
 
   if (!player) {
-    return <Navigate to="/gate" replace />
+    return <Navigate to="/" replace />
   }
   return <Home />
 }

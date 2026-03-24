@@ -23,28 +23,40 @@ function savePlayers(players) {
   }
 }
 
-export function updatePlayerProgress({ playerId, name, clearedIds }) {
+export function updatePlayerProgress({ playerId, name, clearedIds, currentStoryId, history }) {
   if (!playerId || !name) return
   const ids = Array.isArray(clearedIds) ? clearedIds.map(String) : []
   const clearedSet = new Set(ids)
+  const normalizedClearedIds = Array.from(clearedSet).sort((a, b) => Number(a) - Number(b))
 
   const players = loadPlayers()
   const prev = players[playerId] || {}
 
-  const clearedCount = clearedSet.size
-  const maxClearedId = ids
+  const clearedCount = normalizedClearedIds.length
+  const maxClearedId = normalizedClearedIds
     .map((id) => Number(id))
     .filter((n) => Number.isFinite(n))
     .sort((a, b) => b - a)[0] || 0
+  const nextStoryId = Math.min(Math.max(maxClearedId + 1, 1), 60)
+  const explicitCurrent = Number(currentStoryId)
+  const prevCurrent = Number(prev.currentStoryId)
+  const resolvedCurrentStoryId = Number.isFinite(explicitCurrent) && explicitCurrent > 0
+    ? explicitCurrent
+    : Number.isFinite(prevCurrent) && prevCurrent > 0
+      ? Math.max(prevCurrent, nextStoryId)
+      : nextStoryId
 
   players[playerId] = {
+    // 先继承旧数据，再覆盖最新值，避免旧值把新值覆盖回去
+    ...prev,
     playerId,
     name,
+    clearedIds: normalizedClearedIds,
     clearedCount,
     maxClearedId,
+    currentStoryId: resolvedCurrentStoryId,
+    history: Array.isArray(history) ? history : Array.isArray(prev.history) ? prev.history : [],
     updatedAt: new Date().toISOString(),
-    // 保留之前的信息（例如以后扩展）
-    ...prev
   }
 
   savePlayers(players)
@@ -65,5 +77,10 @@ export function getLeaderboard(limit = 20) {
   })
 
   return list.slice(0, limit)
+}
+
+export function getPlayerById(playerId) {
+  const players = loadPlayers()
+  return players[playerId] || null
 }
 

@@ -33,3 +33,13 @@ export function savePlayerName(name: string): PlayerIdentity {
   return { id, name: trimmed }
 }
 
+export function setActivePlayer(playerId: string, name: string): PlayerIdentity {
+  const id = (playerId || '').trim() || makeId()
+  const trimmed = (name || '').trim() || '无名侦探'
+  if (typeof window !== 'undefined') {
+    window.localStorage.setItem(ID_KEY, id)
+    window.localStorage.setItem(NAME_KEY, trimmed)
+  }
+  return { id, name: trimmed }
+}
+

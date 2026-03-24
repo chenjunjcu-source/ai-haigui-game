@@ -30,6 +30,11 @@ export function getProgress(): ProgressState {
   return loadRaw()
 }
 
+export function setProgress(state: ProgressState) {
+  const safe = Array.isArray(state?.clearedIds) ? state.clearedIds.map(String) : []
+  save({ clearedIds: safe })
+}
+
 export function isCleared(id: string): boolean {
   return loadRaw().clearedIds.includes(id)
 }

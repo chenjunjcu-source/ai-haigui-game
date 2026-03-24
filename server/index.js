@@ -3,7 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import { getStoryById } from './stories.js'
-import { updatePlayerProgress, getLeaderboard } from './players.js'
+import { updatePlayerProgress, getLeaderboard, getPlayerById } from './players.js'
 
 dotenv.config()
 
@@ -123,17 +123,29 @@ ${historyLines.length ? historyLines.join('\n') : '（无）'}
 })
 
 app.post('/api/player/progress', (req, res) => {
-  const { playerId, name, clearedIds } = req.body || {}
+  const { playerId, name, clearedIds, currentStoryId, history } = req.body || {}
   if (!playerId || !name) {
     return res.status(400).json({ error: '缺少 playerId 或 name' })
   }
-  updatePlayerProgress({ playerId, name, clearedIds })
+  updatePlayerProgress({ playerId, name, clearedIds, currentStoryId, history })
   res.json({ ok: true })
 })
 
 app.get('/api/leaderboard', (_req, res) => {
   const list = getLeaderboard(20)
   res.json({ players: list })
+})
+
+app.get('/api/player/:playerId', (req, res) => {
+  const playerId = String(req.params.playerId || '')
+  if (!playerId) {
+    return res.status(400).json({ error: '缺少 playerId' })
+  }
+  const player = getPlayerById(playerId)
+  if (!player) {
+    return res.status(404).json({ error: '玩家不存在' })
+  }
+  res.json(player)
 })
 
 app.listen(PORT, () => {
