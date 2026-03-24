@@ -23,14 +23,14 @@
 | 项 | 说明 |
 |----|------|
 | 建议仓库名 | `ai-haigui-game`（与 `package.json` 中 `name` 一致即可） |
-| 远程地址 | `https://github.com/<组织或用户名>/<仓库名>.git` |
+| 远程地址 | `https://github.com/chenjunjcu-source/ai-haigui-game` |
 | 默认分支 | 一般为 `main` |
 | 协作约定 | 功能分支开发，合并前执行 `npm run build` 与必要的接口自测 |
 
 若尚未托管至 GitHub，请在平台创建空仓库后执行：
 
 ```bash
-git remote add origin https://github.com/<用户名>/<仓库名>.git
+git remote add origin https://github.com/chenjunjcu-source/ai-haigui-game
 git branch -M main
 git push -u origin main
 ```
