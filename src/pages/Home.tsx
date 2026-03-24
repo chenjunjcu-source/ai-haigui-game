@@ -87,18 +87,21 @@ export default function Home() {
 
   return (
     <main className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10">
-      <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <div className="inline-flex items-center gap-3 rounded-2xl border border-slate-700/70 bg-slate-900/50 px-4 py-3 backdrop-blur">
-            <div className="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(56,189,248,0.75)]" />
-            <h1 className="text-lg font-semibold tracking-[0.18em]">AI 海龟汤调查局</h1>
-          </div>
-          <p className="mt-3 max-w-xl text-xs text-slate-300">
-            一面墙的离奇案件档案。选择一份“汤面”，和冷酷的海龟汤法官一起，把真相从黑暗中拽出来。
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3">
+      <header className="flex flex-col gap-6">
+        {/* 顶部一行：返回排行榜 / 返回欢迎页 在背景乐左侧，与其余人房间按钮同排、风格统一 */}
+        <div className="flex w-full flex-wrap items-center gap-3 border-b border-slate-800/60 pb-4">
+          <GlowButton
+            onClick={() => navigate('/leaderboard')}
+            className="text-xs px-3 py-2 hover:shadow-[0_0_20px_rgba(56,189,248,0.38)]"
+          >
+            返回排行榜
+          </GlowButton>
+          <GlowButton
+            onClick={() => navigate('/')}
+            className="text-xs px-3 py-2 hover:shadow-[0_0_20px_rgba(56,189,248,0.38)]"
+          >
+            返回欢迎页
+          </GlowButton>
           <button
             type="button"
             onClick={() => setMusicOn((v) => !v)}
@@ -113,7 +116,10 @@ export default function Home() {
             <span className="text-[10px] text-slate-400">(UI 预留，稍后接入)</span>
           </button>
 
-          <GlowButton onClick={() => navigate(`/room/${Date.now().toString(36)}`)} className="text-xs px-3 py-2">
+          <GlowButton
+            onClick={() => navigate(`/room/${Date.now().toString(36)}`)}
+            className="text-xs px-3 py-2"
+          >
             创建多人房间
           </GlowButton>
           <GlowButton
@@ -126,6 +132,16 @@ export default function Home() {
           >
             加入房间
           </GlowButton>
+        </div>
+
+        <div>
+          <div className="inline-flex items-center gap-3 rounded-2xl border border-slate-700/70 bg-slate-900/50 px-4 py-3 backdrop-blur">
+            <div className="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(56,189,248,0.75)]" />
+            <h1 className="text-lg font-semibold tracking-[0.18em]">AI 海龟汤调查局</h1>
+          </div>
+          <p className="mt-3 max-w-xl text-xs text-slate-300">
+            一面墙的离奇案件档案。选择一份“汤面”，和冷酷的海龟汤法官一起，把真相从黑暗中拽出来。
+          </p>
         </div>
       </header>
 
